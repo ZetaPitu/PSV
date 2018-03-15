@@ -1,0 +1,233 @@
+﻿Imports System.IO
+Imports System.Windows.Markup
+Imports MS.Internal
+
+Public Class Form1
+    Private contador As Int32 = 0
+    Private Final As Int32
+    Private myStream As Stream = Nothing
+    Private DirPsv = "http://sophrologie-dynamique.weebly.com/uploads/1/1/3/2/11325139/1334317102.jpg "
+    Private img = "1.jpg"
+    Private DirImg = Nothing
+    Private ArchivoWeb(2000) As String
+    Private ArchivoPc(2000) As String
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        For x = 0 To 1000
+        Next
+        Try
+
+            ReadFile()
+
+        Catch Ex As Exception
+
+            MessageBox.Show(Ex.Message)
+
+        End Try
+
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        myStream = Nothing
+        Dim openFileDialog1 As New OpenFileDialog()
+
+        openFileDialog1.InitialDirectory = "C:\"
+        openFileDialog1.Filter = "Excel separado por ; (*.csv) |*.csv|Todos los archivos|*.*"
+        openFileDialog1.FilterIndex = 1
+        openFileDialog1.RestoreDirectory = True
+        TextBox2.Text = openFileDialog1.FileName
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Try
+
+                TextBox2.Text = openFileDialog1.FileName
+                Button2.Enabled = False
+                Button3.Enabled = True
+
+                REM  Leer_Archivo_Excel()
+
+            Catch Ex As Exception
+                MessageBox.Show("Error al abrir archivo: " & Ex.Message)
+            Finally
+                ' Check this again, since we need to make sure we didn't throw an exception on open.
+                If (myStream IsNot Nothing) Then
+                    myStream.Close()
+                End If
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        FolderBrowserDialog1.SelectedPath = "C:\"
+
+        If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+            TextBox1.Text = FolderBrowserDialog1.SelectedPath
+            Button3.Enabled = False
+            Button1.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Label1.Text = "Elija archivo de excel"
+        Label2.Text = "Elija directorio de para guardar"
+    End Sub
+    Function Leer_Archivo_Excel() As Boolean
+
+
+
+        ReadFile()
+
+        REM MessageBox.Show(TextBox3.Text)
+        Return True
+    End Function
+
+
+    Function Leer_Archivo(Web As String, Local As String) As Boolean
+        Try
+            TextBox3.Text = DirPsv
+            REM   My.Computer.Network.DownloadFile(Web, Local, "anonymous", "")
+            ArchivoWeb(contador) = New String(Web)
+            ArchivoPc(contador) = Local
+            contador = contador + 1
+            If contador > 1000 Then
+                REM   MsgBox(Web)
+            End If
+            TextBox4.Text = TextBox4.Text + " : " + Web + vbCrLf
+        Catch ex As Exception
+            MsgBox("Error " & ex.Message & " Error de escritura ")
+        End Try
+        Return True
+    End Function
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Me.Close()
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+
+    End Sub
+
+    Private Sub ReadFile()
+
+        Using MyReader As New Microsoft.VisualBasic.
+                          FileIO.TextFieldParser(TextBox2.Text, System.Text.Encoding.Unicode)
+            MyReader.TextFieldType = FileIO.FieldType.Delimited
+            MyReader.SetDelimiters(";; ")
+            Dim currentRow As String()
+            Try
+                currentRow = MyReader.ReadFields()
+            Catch ex As Microsoft.VisualBasic.
+                            FileIO.MalformedLineException
+                MsgBox("Line " & ex.Message &
+                    " Error en linea ")
+            End Try
+            While Not MyReader.EndOfData
+                Try
+                    currentRow = MyReader.ReadFields()
+                    Dim currentField As String
+                    For Each currentField In currentRow
+                        If (currentField.Length > 3) Then
+                            TextBox3.Text = currentField
+                            Crear_Archivo(TextBox3.Text)
+                        End If
+
+                    Next
+                Catch ex As Microsoft.VisualBasic.
+                            FileIO.MalformedLineException
+                    MsgBox("Line " & ex.Message &
+                    "Error en linea")
+                End Try
+            End While
+            Descargar_Logos()
+        End Using
+    End Sub
+    Private Sub ReadLine()
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(TextBox2.Text)
+
+            MyReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
+            MyReader.SetDelimiters(";;")
+            Dim currentRow As String()
+            'Loop through all of the fields in the file. 
+            'If any lines are corrupt, report an error and continue parsing. 
+            While Not MyReader.EndOfData
+                Try
+                    currentRow = MyReader.ReadFields()
+                    MsgBox(currentRow)
+                Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
+                    MsgBox("Line " & ex.Message &
+                    " is invalid.  Skipping")
+                End Try
+            End While
+        End Using
+    End Sub
+
+    Private Sub Crear_Archivo(S As String)
+
+        Dim TestString As String = S
+        Dim TestArray() As String = Split(TestString, ";")
+        ' TestArray holds {"apple", "", "", "", "pear", "banana", "", ""}
+        Dim LastNonEmpty As Integer = -1
+        For i As Integer = 0 To TestArray.Length - 1
+            If TestArray(i) <> ";" Then
+                LastNonEmpty += 1
+                TestArray(LastNonEmpty) = TestArray(i)
+            End If
+        Next
+        ReDim Preserve TestArray(LastNonEmpty)
+        ' TestArray now holds {"apple", "pear", "banana"}
+
+        TextBox4.Text = TestArray(1) & "  ---> " & TextBox1.Text & "\" & TestArray(4) & ".inlive"
+        Leer_Archivo(TestArray(1), TextBox1.Text & "\" & TestArray(4) & ".inlive")
+        REM Logo.Url = New Uri(TestArray(1))
+    End Sub
+    Private Sub Descargar_Logos()
+        MsgBox("Logos --> " + CType(contador, String))
+
+        For x = 0 To contador
+            Try
+
+                TextBox4.Text = CType(x, String) + ":" + ArchivoWeb(x) + " -->" + ArchivoPc(x) + vbCrLf
+                My.Computer.Network.DownloadFile(ArchivoWeb(x), ArchivoPc(x), "anonymous", "")
+                VerImagen(ArchivoPc(x))
+            Catch ex As Exception
+                Try
+                    TextBox4.Text = TextBox4.Text + "Error -->" + ex.Message
+                    VerImagen(ArchivoPc(x))
+                Catch ei As Exception
+                    TextBox4.Text = TextBox4.Text + "Error -->" + ei.Message
+                End Try
+
+            End Try
+
+            Dim response = MsgBox("Siguiente", MsgBoxStyle.OkCancel, "In Live")
+            If response = MsgBoxResult.Cancel Then
+                Close()
+            End If
+        Next
+    End Sub
+    Public Sub VerImagen(fileToDisplay As String)
+        ' Sets up an image object to be displayed.
+        Dim MyImage As Bitmap = Nothing
+        If (MyImage IsNot Nothing) Then
+            MyImage.Dispose()
+        End If
+
+        ' Stretches the image to fit the pictureBox. 
+        PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
+        MyImage = New Bitmap(fileToDisplay)
+        PictureBox2.Image = CType(MyImage, Image)
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        REM TextBox4.Text = ArchivoWeb(contador) + vbCrLf
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
+    End Sub
+End Class

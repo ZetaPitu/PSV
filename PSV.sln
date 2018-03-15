@@ -3,36 +3,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PSV", "PSV\PSV.vbproj", "{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WindowsApp1", "WindowsApp1\WindowsApp1.vbproj", "{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4ED923A5-C74B-48D7-AE23-1814F46A4DF3}"
+	ProjectSection(SolutionItems) = preProject
+		..\tblas\tblas\css\00Tablas\PSV.csv = ..\tblas\tblas\css\00Tablas\PSV.csv
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|ARM.ActiveCfg = Debug|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|ARM.Build.0 = Debug|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|ARM.Deploy.0 = Debug|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x64.ActiveCfg = Debug|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x64.Build.0 = Debug|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x64.Deploy.0 = Debug|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x86.ActiveCfg = Debug|x86
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x86.Build.0 = Debug|x86
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Debug|x86.Deploy.0 = Debug|x86
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|ARM.ActiveCfg = Release|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|ARM.Build.0 = Release|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|ARM.Deploy.0 = Release|ARM
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x64.ActiveCfg = Release|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x64.Build.0 = Release|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x64.Deploy.0 = Release|x64
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x86.ActiveCfg = Release|x86
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x86.Build.0 = Release|x86
-		{77ACD9F3-7D59-4ABD-9FEB-FA7E886F0B84}.Release|x86.Deploy.0 = Release|x86
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|x64.Build.0 = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Debug|x86.Build.0 = Debug|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|ARM.Build.0 = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|x64.ActiveCfg = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|x64.Build.0 = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|x86.ActiveCfg = Release|Any CPU
+		{F0C6DA5B-4BC1-45BE-B7F2-E4D84A2BB66F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
